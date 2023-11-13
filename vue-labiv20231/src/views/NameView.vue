@@ -58,7 +58,7 @@
 
   async function cadastrar() {
     try {
-      await axios.post("https://8080-luisttine-springboot1-33b4hwq76is.ws-us106.gitpod.io/empregado",
+      await axios.post("empregado",
       {
         "nome": nome.value,
         "email": email.value,

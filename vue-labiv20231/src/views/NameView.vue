@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Bem vindo {{ namezin }}</h1>
+    <h1>Cadastro</h1>
     <label for="nome">Nome: </label>
     <input id="nome" type="text" v-model="nome" /> 
     <label for="email">Email: </label>
@@ -12,6 +12,9 @@
     <label for="cargaHoraria">Carga Horaria: </label>
     <input id="cargaHoraria" type="text" v-model="cargaHoraria" />
     <button @click="cadastrar">Cadastrar</button>
+
+    <h1>Buscar por Email</h1>
+    <button @click="buscarPorEmail">Buscar</button>
 
     <p v-if="erro">{{ erro }}</p>
 
@@ -34,10 +37,10 @@
   import { onMounted, ref } from 'vue';
   import axios from 'axios';
 
-  const nome =  ref("Nomezin");
-  const email = ref("teste1@gmail.com");
-  const ctps =  ref(1235456);
-  const dataCadastro = ref("2023-11-13T13:04:00");
+  const nome =  ref();
+  const email = ref();
+  const ctps =  ref();
+  const dataCadastro = ref();
   const cargaHoraria = ref(null);
   const usuarios = ref();
   const erro = ref();
@@ -55,6 +58,16 @@
     atualizar();
   });
 
+  async function buscarPorEmail() {
+    try { 
+      usuarios.value = ''
+      usuarios.value = (await axios.get("empregado/email/" + email.value)).data;
+      console.log(usuarios.value)
+    }
+    catch(ex) {
+      erro.value = (ex as Error).message;
+    }
+  }
 
   async function cadastrar() {
     try {

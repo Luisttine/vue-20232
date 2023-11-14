@@ -8,7 +8,7 @@ import router from './router'
 
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://8080-luisttine-springboot1-33b4hwq76is.ws-us106.gitpod.io/'
+axios.defaults.baseURL = 'http://localhost:8080/'
 
 const app = createApp(App)
 
